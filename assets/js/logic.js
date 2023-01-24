@@ -11,7 +11,7 @@ let counter = 0;
 timeObj = document.getElementById("time");
 
 // set the timer
-let time = 45;
+let time = 20;
 
 
 // displays the questions
@@ -60,14 +60,26 @@ function markMe(event) {
     }
     else {
         document.querySelector(".mark").textContent = "Wrong";
-        time -= 10;
+        if(time - 10 <= 0) {
+            clearInterval(timer);
+            timeObj.textContent = 0;
+            document.getElementById('end-screen').setAttribute("class", "show");
+            questionsDiv.setAttribute("class", "hide");
+        }
+        else time -= 10;
     }
     counter++;
     setTimeout(function () {
         document.querySelector('hr').remove();
         document.querySelector(".mark").remove();
-        displayQuestion(questions[counter])
-    }, 900);
+        if (questions.length == counter) { 
+            document.getElementById('end-screen').setAttribute("class", "show");
+            questionsDiv.setAttribute("class", "hide");
+            clearInterval(timer);
+            timeObj.textContent = 0;
+        }
+        else displayQuestion(questions[counter])
+    }, 800);
 }
 
 // start object
@@ -85,5 +97,7 @@ let timer = setInterval( function() {
     timeObj.textContent = time;
     if (time == 0) {
         clearInterval(timer);
+        document.getElementById('end-screen').setAttribute("class", "show");
+        questionsDiv.setAttribute("class", "hide");
     }
 }, 1000);
