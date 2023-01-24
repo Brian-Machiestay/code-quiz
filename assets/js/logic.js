@@ -7,6 +7,13 @@ questionsDiv = document.getElementById("questions");
 // counter to track question number
 let counter = 0;
 
+// time object
+timeObj = document.getElementById("time");
+
+// set the timer
+let time = 45;
+
+
 // displays the questions
 function displayQuestion(que) {
     let queTitle = document.querySelector("#question-title");
@@ -53,6 +60,7 @@ function markMe(event) {
     }
     else {
         document.querySelector(".mark").textContent = "Wrong";
+        time -= 10;
     }
     counter++;
     setTimeout(function () {
@@ -69,11 +77,8 @@ let start = document.getElementById("start");
 start.addEventListener("click", startQuiz);
 
 
-//
-timeObj = document.getElementById("time");
 
-// set the timer
-let time = 45;
+
 timeObj.textContent = time;
 let timer = setInterval( function() {
     time--;
