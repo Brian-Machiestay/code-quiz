@@ -12,8 +12,12 @@ Several Features have been developed here
 ## Deployment
  Below is a preview of the deployed application
 
- ![A preview of the deployed application](./assets/images/coding.jpg)
+ ![A preview of the deployed application](./assets/images/coding.jpg)  
 
- ![questions](./assets/images/fin.jpg)
+ Questions display page
+
+ ![questions](./assets/images/fin.jpg)  
+
+ Scores page
 
  ![scores](./assets/images/hiscore.jpg)
