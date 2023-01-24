@@ -11,7 +11,7 @@ let counter = 0;
 timeObj = document.getElementById("time");
 
 // set the timer
-let time = 20;
+let time = 100;
 
 // keep track of scores
 let score = 0;
@@ -36,6 +36,18 @@ function displayQuestion(que) {
 
 //starts the questions display
 function startQuiz (event) {
+    // create the timer
+    timeObj.textContent = time;
+    let timer = setInterval( function() {
+    time--;
+    timeObj.textContent = time;
+    if (time == 0) {
+        clearInterval(timer);
+        document.getElementById('end-screen').setAttribute("class", "show");
+        questionsDiv.setAttribute("class", "hide");
+    }
+    }, 1000);
+
     startScreenWrapper.setAttribute("class", "hide");
     questionsDiv.setAttribute("class", "show");
     displayQuestion(questions[counter]);
@@ -90,20 +102,6 @@ let start = document.getElementById("start");
 
 // attach event listener to start
 start.addEventListener("click", startQuiz);
-
-
-
-// create the timer
-timeObj.textContent = time;
-let timer = setInterval( function() {
-    time--;
-    timeObj.textContent = time;
-    if (time == 0) {
-        clearInterval(timer);
-        document.getElementById('end-screen').setAttribute("class", "show");
-        questionsDiv.setAttribute("class", "hide");
-    }
-}, 1000);
 
 
 // listen to the submit for initials
