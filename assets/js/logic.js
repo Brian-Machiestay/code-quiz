@@ -13,6 +13,9 @@ timeObj = document.getElementById("time");
 // set the timer
 let time = 20;
 
+// keep track of scores
+let score = 0;
+
 
 // displays the questions
 function displayQuestion(que) {
@@ -26,7 +29,6 @@ function displayQuestion(que) {
         }
         choicesDiv.appendChild(choiceButton);
         let choice = document.querySelector(`.choice${i}`);
-        console.log(que.choices[i]);
         choice.textContent = que.choices[i];
     }
     queTitle.textContent = que.title;
@@ -57,6 +59,7 @@ function markMe(event) {
     mark.setAttribute("class", "mark"); 
     if (event.target.textContent === questions[counter].answer) {
         document.querySelector(".mark").textContent = "Correct";
+        score++;
     }
     else {
         document.querySelector(".mark").textContent = "Wrong";
@@ -79,7 +82,7 @@ function markMe(event) {
             timeObj.textContent = 0;
         }
         else displayQuestion(questions[counter])
-    }, 800);
+    }, 500);
 }
 
 // start object
@@ -90,7 +93,7 @@ start.addEventListener("click", startQuiz);
 
 
 
-
+// create the timer
 timeObj.textContent = time;
 let timer = setInterval( function() {
     time--;
@@ -101,3 +104,28 @@ let timer = setInterval( function() {
         questionsDiv.setAttribute("class", "hide");
     }
 }, 1000);
+
+
+// listen to the submit for initials
+let subObj = document.getElementById('submit');
+
+
+let storeScore = [];
+
+// add an event listener to the submit button to display scores
+subObj.addEventListener("click", function() {
+    let ini = document.querySelector("#initials");
+    if (localStorage.getItem('score') == null) {
+        storeScore.push(`${ini.value} - ${score}`);
+        localStorage.setItem("score", JSON.stringify(storeScore));
+    }
+    else {
+        storeScore = JSON.parse(localStorage.getItem("score"));
+        if (storeScore.length < 5) {
+            storeScore.push(`${ini.value} - ${score}`);
+            localStorage.setItem("score", JSON.stringify(storeScore))
+        }
+    }
+    console.log(storeScore);
+    window.location.href = './highscores.html';
+})
