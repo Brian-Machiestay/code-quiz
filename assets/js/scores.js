@@ -16,4 +16,8 @@ if (localStorage.getItem('score') !== null) {
 highDiv.classList.remove("hide");
 
 // clear high score
-clearHigh
+let clearHigh = document.getElementById('clear');
+clearHigh.addEventListener('click', function() {
+    localStorage.clear();
+    highDiv.classList.add("hide");
+})
