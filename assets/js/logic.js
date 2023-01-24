@@ -4,6 +4,9 @@ startScreenWrapper = document.getElementById("start-screen");
 // questions object((
 questionsDiv = document.getElementById("questions");
 
+// counter to track question number
+let counter = 0;
+
 // displays the questions
 function displayQuestion(que) {
     let queTitle = document.querySelector("#question-title");
@@ -12,6 +15,7 @@ function displayQuestion(que) {
         if (document.querySelector(`.choice${i}`) == null) {
             choiceButton = document.createElement("button");
             choiceButton.setAttribute("class", `choice${i}`);
+            choiceButton.classList.add("indiviChoice")
         }
         choicesDiv.appendChild(choiceButton);
         let choice = document.querySelector(`.choice${i}`);
@@ -25,13 +29,39 @@ function displayQuestion(que) {
 function startQuiz (event) {
     startScreenWrapper.setAttribute("class", "hide");
     questionsDiv.setAttribute("class", "show");
-    displayQuestion(questions[0])
+    displayQuestion(questions[counter]);
+    
+    // indivichoices object
+    let indiviChoice = document.querySelectorAll(".indiviChoice");
+    for (el of indiviChoice) {
+        el.addEventListener("click", markMe)
+    }
+
 }
 
+// displays correct or wrong for answer and next question
+function markMe(event) {
+    if (document.querySelector("hr") == null) {
+        let line = document.createElement("hr");
+        questionsDiv.appendChild(line);
+    }
 
+    let mark = document.createElement("p");
+    questionsDiv.appendChild(mark);
+    mark.setAttribute("class", "mark"); 
+    if (event.target.textContent === questions[counter].answer) {
+        document.querySelector(".mark").textContent = "Correct";
+    }
+    else {
+        document.querySelector(".mark").textContent = "Wrong";
+    }
+    counter++;
+    displayQuestion(questions[counter]);
+}
 
 // start object
-start = document.getElementById("start");
+let start = document.getElementById("start");
+
 
 // attach event listener to start
 start.addEventListener("click", startQuiz);

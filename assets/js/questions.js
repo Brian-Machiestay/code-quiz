@@ -12,6 +12,6 @@ let questions = [
     {
         title: "One of the following is not a javascript framework",
         choices: ["Jquery", "Angular", "Moment", "Flask"],
-        answer: "flask",
+        answer: "Flask",
     }
     ]
