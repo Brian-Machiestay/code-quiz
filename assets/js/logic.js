@@ -56,7 +56,11 @@ function markMe(event) {
         document.querySelector(".mark").textContent = "Wrong";
     }
     counter++;
-    displayQuestion(questions[counter]);
+    setTimeout(function () {
+        document.querySelector('hr').remove();
+        document.querySelector(".mark").remove();
+        displayQuestion(questions[counter])
+    }, 900);
 }
 
 // start object
