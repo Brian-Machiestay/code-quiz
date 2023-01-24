@@ -1,7 +1,7 @@
 # code-quiz
 
 ## Description
-This project illustrates the use of javascript to dynamically inject html and css code in to the DOM. In here several techniques have been used including bootstrap, DOM api, modular programming technique. The project simply presents coding questions to the user within a time frame. The quiz ends if the time is up or all questions have been answered. if the the user selects a wrong answer at any point, the time drops by 10 seconds. Find the link to the deployed application [here]().
+This project illustrates the use of javascript to dynamically inject html and css code in to the DOM. In here several techniques have been used including bootstrap, DOM api, modular programming technique. The project simply presents coding questions to the user within a time frame. The quiz ends if the time is up or all questions have been answered. if the the user selects a wrong answer at any point, the time drops by 10 seconds. Find the link to the deployed application [here](https://brian-machiestay.github.io/code-quiz/).
 
 ## Features
 Several Features have been developed here
