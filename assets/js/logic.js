@@ -36,7 +36,6 @@ function startQuiz (event) {
     for (el of indiviChoice) {
         el.addEventListener("click", markMe)
     }
-
 }
 
 // displays correct or wrong for answer and next question
@@ -66,6 +65,20 @@ function markMe(event) {
 // start object
 let start = document.getElementById("start");
 
-
 // attach event listener to start
 start.addEventListener("click", startQuiz);
+
+
+//
+timeObj = document.getElementById("time");
+
+// set the timer
+let time = 45;
+timeObj.textContent = time;
+let timer = setInterval( function() {
+    time--;
+    timeObj.textContent = time;
+    if (time == 0) {
+        clearInterval(timer);
+    }
+}, 1000);
