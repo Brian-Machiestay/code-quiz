@@ -16,6 +16,26 @@ let time = 100;
 // keep track of scores
 let score = 0;
 
+// keep track of time object
+let timer = '';
+
+
+// time function 
+function createTime () {
+    // create the timer
+    timeObj.textContent = time;
+    let thisTimer = setInterval( function() {
+        timer = thisTimer;
+        time--;
+        timeObj.textContent = time;
+        if (time == 0) {
+            clearInterval(thisTimer);
+            document.getElementById('end-screen').setAttribute("class", "show");
+            questionsDiv.setAttribute("class", "hide");
+        }
+    }, 1000);
+}
+
 
 // displays the questions
 function displayQuestion(que) {
@@ -36,18 +56,7 @@ function displayQuestion(que) {
 
 //starts the questions display
 function startQuiz (event) {
-    // create the timer
-    timeObj.textContent = time;
-    let timer = setInterval( function() {
-    time--;
-    timeObj.textContent = time;
-    if (time == 0) {
-        clearInterval(timer);
-        document.getElementById('end-screen').setAttribute("class", "show");
-        questionsDiv.setAttribute("class", "hide");
-    }
-    }, 1000);
-
+    createTime();
     startScreenWrapper.setAttribute("class", "hide");
     questionsDiv.setAttribute("class", "show");
     displayQuestion(questions[counter]);
